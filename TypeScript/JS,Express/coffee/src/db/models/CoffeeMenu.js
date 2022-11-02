@@ -1,3 +1,5 @@
+
+// 3. addCoffeeMenu 메서드로 전달받는 객체
 export class CoffeeMenu {
     id;
     name;

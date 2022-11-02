@@ -39,4 +39,5 @@ export class OrderService {
   }
 }
 
+// 1. OrderService 의 경우 coffeeMenuService 에 의존하고 있기 때문에, coffeeMenuService 먼저 작성해 줄 예정
 export const orderService = new OrderService(new Storage(), coffeeMenuService);
