@@ -1,6 +1,6 @@
 # E-Commerce 쇼핑몰 앱 프로젝트
 
-### 20221109
+## 20221109
 
 - GUI 로 프로젝트 폴더 생성
 
@@ -73,3 +73,20 @@ npm install clayful --save
 ```
 npm install axios --save
 ```
+
+## 20221110
+
+### ERR 
+https://velog.io/@owlsuri/Uncaught-TypeError-reactdomclientWEBPACKIMPORTEDMODULE1.render-is-not-a-function
+
+LandingPage 컴포넌트를 생성후 렌더링 했지만 화면에 아무것도 나타나지 않고,
+콘솔 창에 에러 문구만 출력이 되었다.
+
+혹시 버전에 대한 문제일까 싶어 react 버전을 18.2.0 에서 17.2.0 버전으로 다운그레이드도 해 보았고,
+
+레퍼런스를 참고해 설치된 라이브러리의 버전을 다운그레이드 후 npm install 을 진행해도 어떤 부분에서 발생한 오류인지 알 수 없었다.
+
+- ERR done
+
+app.js 의 routes 를 router 로 입력해 발생한 오류였다.
+정말 작은 부분에서 발생한 오류가 새삼 크게 느껴져 많은걸 배웠다.
