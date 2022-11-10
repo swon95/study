@@ -76,9 +76,9 @@ npm install axios --save
 
 ## 20221110
 
-### ERR 
+### ERROR
 https://velog.io/@owlsuri/Uncaught-TypeError-reactdomclientWEBPACKIMPORTEDMODULE1.render-is-not-a-function
-
+```
 LandingPage 컴포넌트를 생성후 렌더링 했지만 화면에 아무것도 나타나지 않고,
 콘솔 창에 에러 문구만 출력이 되었다.
 
@@ -90,3 +90,22 @@ LandingPage 컴포넌트를 생성후 렌더링 했지만 화면에 아무것도
 
 app.js 의 routes 를 router 로 입력해 발생한 오류였다.
 정말 작은 부분에서 발생한 오류가 새삼 크게 느껴져 많은걸 배웠다.
+```
+- Register 
+    - 회원가입 페이지 UI 구현
+
+## 20221111
+
+### useState
+
+- React 에서 제공하는 내장 라이브러리
+    - 변수로 사용된 State 는 값이 변경 될 때마다 페이지를 재 렌더링 해줌.
+    - 단, const, let, var 와 같은 변수들은 변경되어도 재 렌더링이 되지 않음.
+```
+import React, { useState } from 'react'
+```
+useState 는 배열을 반환 (리턴) 해줌
+    
+    [초기값 == useState 의 매개변수, state 의 값을 업데이트 해주는 함수]
+
+클레이풀 회원가입 API 를 불러와 활용
