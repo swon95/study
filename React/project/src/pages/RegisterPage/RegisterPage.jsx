@@ -33,6 +33,7 @@ function RegisterPage() {
       if (err) {
         // Error case
         console.log(err.code);
+        return
       }
       Navigate('/login') // 회원가입이 완료 되었다면, 로그인 페이지로 이동
 
