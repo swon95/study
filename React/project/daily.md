@@ -108,4 +108,17 @@ useState 는 배열을 반환 (리턴) 해줌
     
     [초기값 == useState 의 매개변수, state 의 값을 업데이트 해주는 함수]
 
-클레이풀 회원가입 API 를 불러와 활용
+클레이풀 회원가입 API 를 불러와 활용 
+
+
+### useNavigate Hooks
+- react-router-dom 에서 제공하는 Hooks
+```
+import { Navigate, useNavigate } from 'react-router-dom'
+```
+```
+const Navigate = useNavigate()
+```
+    
+회원가입이 완료 되었다면?
+   - 로그인페이지로 이동

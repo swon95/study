@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import Clayful from 'clayful/client-js'
 
 function RegisterPage() {
   const [email, setEmail] = useState('') // 초기 값은 빈 문자열
   const [password, setPassword] = useState('')
+  const Navigate = useNavigate()
 
   const handleChange = (event) => {
     // console.log('email', event.target.value) // 확인
@@ -33,6 +34,7 @@ function RegisterPage() {
         // Error case
         console.log(err.code);
       }
+      Navigate('/login') // 회원가입이 완료 되었다면, 로그인 페이지로 이동
 
       var data = result.data;
 
