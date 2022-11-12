@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import Clayful from 'clayful/client-js'
+import { AuthContext } from '../../context/AuthContext'
+
 
 function LoginPage() {
 
   const [email, setEmail] = useState('') // 초기 값은 빈 문자열
   const [password, setPassword] = useState('')
   const Navigate = useNavigate()
+  const { isAuthenticated } = useContext(AuthContext)
 
   const handleChange = (event) => {
     // console.log('email', event.target.value) // 확인
@@ -41,8 +44,9 @@ function LoginPage() {
       localStorage.setItem('customerUid', data.Customer) // 유저의 고유 ID
       localStorage.setItem('accessToken', data.token) // 로그인 상태를 확인하기 위한 토큰
       Navigate('/')
+      isAuthenticated()
 
-      console.log(data);
+      // console.log(data);
 
     });
   }
