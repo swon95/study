@@ -6,20 +6,27 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 
+import AuthContextProvider from './context/AuthContext'
+
 function App() {
+
   return (
-    <Routes>
 
-      {/* LadningPage 컴포넌트 가져오기 */}
-      <Route path='/' element={<LandingPage />} />
+    <AuthContextProvider>
+      <Routes>
 
-      {/* LoginPage 컴포넌트 가져오기 */}
-      <Route path='/login' element={<LoginPage />} />
-      
-      {/* RegisterPage 컴포넌트 가져오기 */}
-      <Route path='/register' element={<RegisterPage />} />
-    
-    </Routes>
+        {/* LadningPage 컴포넌트 가져오기 */}
+        <Route path='/' element={<LandingPage />} />
+
+        {/* LoginPage 컴포넌트 가져오기 */}
+        <Route path='/login' element={<LoginPage />} />
+
+        {/* RegisterPage 컴포넌트 가져오기 */}
+        <Route path='/register' element={<RegisterPage />} />
+
+      </Routes>
+    </AuthContextProvider>
+
   );
 }
 

@@ -122,3 +122,15 @@ const Navigate = useNavigate()
     
 회원가입이 완료 되었다면?
    - 로그인페이지로 이동
+
+
+### 20221112
+
+- 로그인 페이지 기능구현
+    - 로그인 상태 유지하기 기능 추가 (App.js)
+
+```
+src
+    context
+        AuthContext.jsx
+```
