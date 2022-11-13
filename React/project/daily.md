@@ -144,3 +144,24 @@ src
 src
     components
         header.jsx
+```
+
+
+### 20221114
+Header.jsx:16 
+
+Uncaught TypeError: isAuthenticated is not a function
+
+??? TypeError 발생
+
+```
+<AuthContext.Provider value>
+```
+- value 값을 넣어주지 않아서 생긴 에러...
+    - 선언한 함수를 사용하기 위해 AuthContextData 함수를 생성했는데,
+
+        선언만 하고 호출하지 않아 발생한 에러인듯하다.
+
+```
+<AuthContext.Provider value={AuthContextData}>
+```

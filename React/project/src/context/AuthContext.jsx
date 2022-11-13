@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
 
     return (
         // value 로 넣을 데이터 만들어주기 (필요한 데이터와 데이터를 업데이트 해줄 함수)
-        <AuthContext.Provider value>
+        <AuthContext.Provider value={AuthContextData}>
             {children}
         </AuthContext.Provider>
     )
