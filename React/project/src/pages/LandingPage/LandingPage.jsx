@@ -25,7 +25,7 @@ function LandingPage() {
   })
 
   return (
-    <div>
+    <div className='pageWarrper'>
       12111111
     </div>
   )

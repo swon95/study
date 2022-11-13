@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
-import Header from './components/header';
+import Header from './components/Header';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';

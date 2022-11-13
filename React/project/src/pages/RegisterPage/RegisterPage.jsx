@@ -26,7 +26,7 @@ function RegisterPage() {
       password, // 이와 같이 생략 가능
     };
     console.log('payload', payload) // 사용자가 입력한 정보를 출력
-    
+
 
     Customer.createMe(payload, function (err, result) {
 
@@ -45,18 +45,20 @@ function RegisterPage() {
   }
 
   return (
-    <div className='auth-wrapper'>
-      <h1>회원가입</h1>
+    <div className='pageWrapper'>
+      <div className='auth-wrapper'>
+        <h1>회원가입</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} placeholder='Apple ID' type='email' name='email' value={email} />
-        <input onChange={secretPassword} placeholder='Password' type='Password' name='password' value={password} />
+        <form onSubmit={handleSubmit}>
+          <input onChange={handleChange} placeholder='Apple ID' type='email' name='email' value={email} />
+          <input onChange={secretPassword} placeholder='Password' type='Password' name='password' value={password} />
 
-        <button type='submit'>회원가입</button>
-        <Link to='login' style={{ color: 'gray', textDecoration: 'none' }}>
-          이미 Apple Id 가 있다면? 지금 로그인.
-        </Link>
-      </form>
+          <button type='submit'>회원가입</button>
+          <Link to='login' style={{ color: 'gray', textDecoration: 'none' }}>
+            이미 Apple Id 가 있다면? 지금 로그인.
+          </Link>
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import Clayful from 'clayful/client-js'
 import { useNavigate } from "react-router-dom";
 
@@ -13,9 +13,11 @@ const AuthContextProvider = ({ children }) => {
     // isAuth 를 업데이트 시켜주는 함수
     const isAuthenticated = () => {
         var Customer = Clayful.Customer
+
         var options = {
             customer: localStorage.getItem('accessToken')
         }
+        
         Customer.isAuthenticated(options, function (err, result) {
             if (err) {
                 // Error case
@@ -49,6 +51,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
 
+    // 선언한 함수를 사용하는 부분
     const AuthContextData = {
         isAuth,
         isAuthenticated,
