@@ -124,7 +124,7 @@ const Navigate = useNavigate()
    - 로그인페이지로 이동
 
 
-### 20221112
+## 20221112
 
 - 로그인 페이지 기능구현
     - 로그인 상태 유지하기 기능 추가 (App.js)
@@ -135,9 +135,9 @@ src
         AuthContext.jsx
 ```
 
-### 20221113
+## 20221113
 
-## header component
+### header component
 - 리액트 컴포넌트는 첫 글자를 대문자로 해주어야함
 반응형
 ```
@@ -147,7 +147,7 @@ src
 ```
 
 
-### 20221114
+## 20221114
 Header.jsx:16 
 
 Uncaught TypeError: isAuthenticated is not a function
@@ -165,3 +165,36 @@ Uncaught TypeError: isAuthenticated is not a function
 ```
 <AuthContext.Provider value={AuthContextData}>
 ```
+
+Landing Page UI 
+
+
+## 20221115
+- Detail Page
+
+```
+src
+    pages
+        DetailProductPage
+            DetailProductPage.jsx
+```
+- App.js
+    - 상품 상세페이지 Route 생성
+
+
+### useParams란?
+    리액트에서 제공하는 Hook 으로, 동적으로 라우팅을 생성하기 위해 사용한다.
+
+    URL 에 포함되어있는 고유 값(주로, Key, Value 형식의 객체)을 반환 해 주는 역할을 한다.
+    Route 부분에서 Key 를 지정해주고,
+
+    해당하는 Key 에 적합한 Valuer 를 넣어 URL 을 변경시키면 useParams 를 통해 Key, Value 객체를 확인할 수 있다.
+
+    ex) 게시판 목록에서 게시글을 불러오기, 검색목록을 변경시키기, 
+    페이지 상세정보 등 다양한 기능으로 사용할 수 있다.
+
+### Scope
+- var 과 let 의 차이점
+    - 변수의 유효범위
+    - 재할당과 재선언
+    - 호이스팅

@@ -6,6 +6,7 @@ import Header from './components/Header';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+import DetailProductPage from './pages/DetailProductPage/DetailProductPage'
 
 import AuthContextProvider from './context/AuthContext'
 
@@ -25,6 +26,9 @@ function App() {
 
         {/* RegisterPage 컴포넌트 가져오기 */}
         <Route path='/register' element={<RegisterPage />} />
+
+        {/* Product 하위에서 각각의 상품 고유의 ID 값 Page */}
+        <Route path='/product/:productId' element={<DetailProductPage />} />
 
       </Routes>
     </AuthContextProvider>

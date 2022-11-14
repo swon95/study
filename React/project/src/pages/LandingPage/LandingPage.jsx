@@ -35,7 +35,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import clayful from "clayful/client-js";
+import Clayful from "clayful/client-js";
 
 import appletv from "../../images/icons/apple-tv-logo.png";
 import banker from "../../images/home/banker.png";
@@ -45,7 +45,7 @@ import "./LandingPage.css";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
-  var Product = clayful.Product;
+  var Product = Clayful.Product;
   const [items, setItems] = useState([]);
 
   useEffect(() => {
