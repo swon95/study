@@ -198,3 +198,15 @@ src
     - 변수의 유효범위
     - 재할당과 재선언
     - 호이스팅
+
+### dangerouslySetInnerHTML
+- React 에서 innerHTML 을 사용할 때 외부공격에 대비한 대체방법
+    - 추가자료 => XSS 공격이란?
+
+### React Bootstrap
+- Grid System
+    - 반응형으로 사이즈가 클 때는 한 열에 두개의 컬럼 존재,
+    - 사이즈가 작을때는 한 열에 하나의 컬럼 존재
+
+
+### ? 로 렌더링 조건 걸어주기
