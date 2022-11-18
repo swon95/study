@@ -42,6 +42,7 @@ return (
                 </div>
             </Col>
             <Col md>
+                {/* 자녀 컴포넌트 호출 */}
                 <ProductInfos />
             </Col>
         </Row>
