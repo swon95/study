@@ -1,6 +1,7 @@
 // DetailProductPage 의 자녀 컴포넌트
 
 import React, { useState } from 'react'
+import './ProductInfos.css'
 
 function ProductInfos({ detail }) {
     const [ count, setCount ] = useState()
