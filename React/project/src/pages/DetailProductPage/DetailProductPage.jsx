@@ -43,7 +43,7 @@ return (
             </Col>
             <Col md>
                 {/* 자녀 컴포넌트 호출 */}
-                <ProductInfos />
+                <ProductInfos detail={item} />
             </Col>
         </Row>
     <div dangerouslySetInnerHTML={{__html: item.description}} />
