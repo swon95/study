@@ -9,6 +9,15 @@ function ProductInfos({ detail }) {
     // if (!detail)
     // return
 
+    const handleQuantityClick = (type) => {
+        if (type === 'plus') {
+            setCount((prev) => prev + 1)
+        } else {
+            if (count === 1) return // count 가 1 이면 return
+            setCount((prev) => prev - 1)
+        }
+    }
+
     return (
     <div>
         <p style={{ color : '#bf4800', marginBottom : 0}}>New</p>
@@ -17,10 +26,10 @@ function ProductInfos({ detail }) {
 
         <div className='quantity'>
             <p style={{ fontWeight : 600, marginBottom : 5 }}>수량</p>
-            <button className='plus-btn' type='button' name='button'>+</button>
+            <button className='minus-btn' type='button' name='button' onClick={() => handleQuantityClick('minus')}>-</button>
             {/* 버튼의 default 값은 1부터 시작하게 설정 */}
             <input type='text' readOnly name='name' value={count} />
-            <button className='minus-btn' type='button' name='button'>-</button>
+            <button className='plus-btn' type='button' name='button' onClick={() => handleQuantityClick('plus')}>+</button>
         </div>
         
         {/* line break == 줄 바꿈 */}
