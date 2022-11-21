@@ -38,10 +38,10 @@ function ProductInfos({ detail }) {
         let Cart = Clayful.Cart;
 
         let payload = {
-            product : detail._id,
-            variant : detail.variants[0]._id,
-            quantity : count,
-            shippingMethod : detail.shipping.methods[0]._id
+            product: detail._id,
+            variant: detail.variants[0]._id,
+            quantity: count,
+            shippingMethod: detail.shipping.methods[0]._id
         };
 
         let options = {
@@ -55,10 +55,18 @@ function ProductInfos({ detail }) {
                 console.log(err.code);
                 return // error 차단
             }
-            setShow(true) // 장바구니에 성공적으로 담겼다면 true 로 변경
-            setTimeout(() => {
-                setShow(false) // setShow 를 false 로 변경
-            }, 3000) // 3초 뒤에
+            if (type === 'cart') { // type 이 cart 면,
+                setShow(true) // 장바구니에 성공적으로 담겼다면 true 로 변경
+                setTimeout(() => {
+                    setShow(false) // setShow 를 false 로 변경
+                }, 3000) // 3초 뒤에
+
+            } else { // 그게 아니라면,
+                setTimeout(() => {
+                    navigate('/user/cart') // 해당 경로(장바구니 페이지)로 이동
+                }, 1000)
+            }
+
         });
     }
 
@@ -67,7 +75,7 @@ function ProductInfos({ detail }) {
             {/* show 가 존재할때만 */}
             {show && (
                 // variant == 테마 , 'info' == 색상
-                <Alert variant = "info">
+                <Alert variant="info">
                     <Alert.Heading>상품이 장바구니에 담겼습니다.</Alert.Heading>
                     <p>장바구니에서 확인해주세요.</p>
                 </Alert>
@@ -93,7 +101,7 @@ function ProductInfos({ detail }) {
             <br />
 
             <div className='product-info-action' onClick={() => handleActionClick('cart')}>장바구니에 담기</div>
-            <div className='product-info-action'>바로 구매</div>
+            <div className='product-info-action' onClick={() => handleActionClick('pay')}>바로 구매</div>
         </div>
     )
 }
