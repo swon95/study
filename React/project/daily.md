@@ -225,3 +225,35 @@ src
     ./ == 현재 위치
     ./../ == 상위 디렉토리
     ```
+
+## 20221121
+clayful - javascript API 레퍼런스 참조
+```
+Cart.addItemForMe
+-------------------
+
+var Cart = Clayful.Cart;
+
+var payload = {
+	...
+};
+
+var options = {
+	customer: '<customer-auth-token>',
+	...
+};
+
+Cart.addItemForMe(payload, options, function(err, result) {
+
+	if (err) {
+		// Error case
+		console.log(err.code);
+	}
+
+	var headers = result.headers;
+	var data = result.data;
+
+	console.log(data);
+
+});
+```
