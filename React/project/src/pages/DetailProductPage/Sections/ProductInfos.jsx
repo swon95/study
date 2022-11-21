@@ -35,13 +35,15 @@ function ProductInfos({ detail }) {
         let Cart = Clayful.Cart;
 
         let payload = {
-            ...
-};
+            product : detail._id,
+            variant : detail.variants[0]._id,
+            quantity : count,
+            shippingMethod : detail.shipping.methods[0]._id
+        };
 
         let options = {
-            customer: '<customer-auth-token>',
-            ...
-};
+            customer: localStorage.getItem('accessToken'),
+        };
 
         Cart.addItemForMe(payload, options, function (err, result) {
 
