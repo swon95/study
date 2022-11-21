@@ -5,6 +5,7 @@ import './ProductInfos.css'
 import { AuthContext } from '../../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Clayful from 'clayful/client-js'
+import { Alert } from 'react-bootstrap'
 
 
 function ProductInfos({ detail }) {
@@ -13,7 +14,9 @@ function ProductInfos({ detail }) {
     // if (!detail)
     // return
     const { isAuth } = useContext(AuthContext)
+    // console.log('detail', detail)
     const navigate = useNavigate()
+    const [show, setShow] = useState(false) // 초기 값 false
 
 
     const handleQuantityClick = (type) => {
@@ -50,18 +53,26 @@ function ProductInfos({ detail }) {
             if (err) {
                 // Error case
                 console.log(err.code);
+                return // error 차단
             }
-
-            let headers = result.headers;
-            let data = result.data;
-
-            console.log(data);
-
+            setShow(true) // 장바구니에 성공적으로 담겼다면 true 로 변경
+            setTimeout(() => {
+                setShow(false) // setShow 를 false 로 변경
+            }, 3000) // 3초 뒤에
         });
     }
 
     return (
         <div>
+            {/* show 가 존재할때만 */}
+            {show && (
+                // variant == 테마 , 'info' == 색상
+                <Alert variant = "info">
+                    <Alert.Heading>상품이 장바구니에 담겼습니다.</Alert.Heading>
+                    <p>장바구니에서 확인해주세요.</p>
+                </Alert>
+            )}
+
             <p style={{ color: '#bf4800', marginBottom: 0 }}>New</p>
             <h1 style={{ marginBottom: 20 }}>{detail.name} 구입하기</h1>
             <h5>{detail.summary} 개별 판매 가격 {detail.price?.original.formatted}</h5>
