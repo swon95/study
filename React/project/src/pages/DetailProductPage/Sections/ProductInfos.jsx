@@ -100,8 +100,8 @@ function ProductInfos({ detail }) {
 
             <br />
 
-            <div className='product-info-action' onClick={() => handleActionClick('cart')}>장바구니에 담기</div>
-            <div className='product-info-action' onClick={() => handleActionClick('pay')}>바로 구매</div>
+            <div style={{cursor:"pointer"}} className='product-info-action' onClick={() => handleActionClick('cart')}>장바구니에 담기</div>
+            <div style={{cursor:"pointer"}} className='product-info-action' onClick={() => handleActionClick('pay')}>바로 구매</div>
         </div>
     )
 }
