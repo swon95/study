@@ -38,6 +38,7 @@ const FriendList = () => {
 }
 
 // 함수형 컴포넌트
+// 함수형 컴포넌트는 변화하는 값을 관리할 수 없지만 이를 Hooks 로 해결할 수 있다.
 // const Profile = (props) => {
 //   return(
 //     // row 가로로 정렬된 렌더링
