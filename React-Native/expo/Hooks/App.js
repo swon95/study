@@ -2,13 +2,20 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 // import StateWithClassComponent from './components/StateWithClassComponent'
-import StateWithFuctionalComponent from './components/StateWithFuctionalComponent'
+// import StateWithFuctionalComponent from './components/StateWithFuctionalComponent'
+import UseEffectWithClassComponent from './components/UseEffectWithClassComponent'
+import UseEffectWithFunctionalComponent from './components/UseEffectWithFunctionalComponent'
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <StateWithClassComponent/> */}
-      <StateWithFuctionalComponent/>
+      {/* <StateWithFuctionalComponent/> */}
+      <UseEffectWithClassComponent/>
+      {/* <UseEffectWithFunctionalComponent/> */}
+      <Text>
+        심상원
+      </Text>
     </View>
   );
 }
