@@ -11,11 +11,8 @@ export default function App() {
     <View style={styles.container}>
       {/* <StateWithClassComponent/> */}
       {/* <StateWithFuctionalComponent/> */}
-      <UseEffectWithClassComponent/>
-      {/* <UseEffectWithFunctionalComponent/> */}
-      <Text>
-        심상원
-      </Text>
+      {/* <UseEffectWithClassComponent/> */}
+      <UseEffectWithFunctionalComponent/>
     </View>
   );
 }
