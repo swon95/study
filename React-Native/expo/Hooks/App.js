@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import CustomHook from './components/CustomHook';
 
 // import StateWithClassComponent from './components/StateWithClassComponent'
 // import StateWithFuctionalComponent from './components/StateWithFuctionalComponent'
-import UseEffectWithClassComponent from './components/UseEffectWithClassComponent'
-import UseEffectWithFunctionalComponent from './components/UseEffectWithFunctionalComponent'
+// import UseEffectWithClassComponent from './components/UseEffectWithClassComponent'
+// import UseEffectWithFunctionalComponent from './components/UseEffectWithFunctionalComponent'
 
 export default function App() {
   return (
@@ -12,7 +13,9 @@ export default function App() {
       {/* <StateWithClassComponent/> */}
       {/* <StateWithFuctionalComponent/> */}
       {/* <UseEffectWithClassComponent/> */}
-      <UseEffectWithFunctionalComponent/>
+      {/* <UseEffectWithFunctionalComponent/> */}
+
+      <CustomHook/>
     </View>
   );
 }
