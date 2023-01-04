@@ -1,5 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View, Text } from 'react-native'
+import Styled from 'styled-components'
 
 // 버튼 타입에 따른 색 변화
 const COLOR = {
@@ -51,17 +52,20 @@ const Button = ({ text, onPress, flex, type }) => {
     )
 }
 
-
+const ButtonContainer = Styled.View`
+    flex-direction: row;
+    width: 100%;
+`
 
 export default () => {
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, width: 250 }}>
             {/* 결과 */}
 
             {/* [AC ~ /] */}
             {/* width 를 지정해주지 않으면 화면에 출력되지 않음 */}
-            <View style={{ flexDirection: 'row', width: 250 }}>
+            <ButtonContainer>
                 <Button
                     type='reset'
                     text='AC'
@@ -76,9 +80,9 @@ export default () => {
                     // 4칸 중 1칸 차지
                     flex={1}
                 />
-            </View>
+            </ButtonContainer>
             {/* [7 ~ x] */}
-            <View style={{ flexDirection: 'row', width: '100%' }}>
+            <ButtonContainer>
                 <Button
                     type='num'
                     text='7'
@@ -103,9 +107,9 @@ export default () => {
                     onPress={() => null}
                     flex={1}
                 />
-            </View>
+            </ButtonContainer>
             {/* [4 ~ -] */}
-            <View style={{ flexDirection: 'row', width: '100%' }}>
+            <ButtonContainer>
                 <Button
                     type='num'
                     text='4'
@@ -130,9 +134,9 @@ export default () => {
                     onPress={() => null}
                     flex={1}
                 />
-            </View>
+            </ButtonContainer>
             {/* [1 ~ +] */}
-            <View style={{ flexDirection: 'row', width: '100%' }}>
+            <ButtonContainer>
                 <Button
                     type='num'
                     text='1'
@@ -157,9 +161,9 @@ export default () => {
                     onPress={() => null}
                     flex={1}
                 />
-            </View>
+            </ButtonContainer>
             {/* [0 ~ =] */}
-            <View style={{ flexDirection: 'row', width: '100%' }}>
+            <ButtonContainer>
                 <Button
                     type='num'
                     text='0'
@@ -172,7 +176,7 @@ export default () => {
                     onPress={() => null}
                     flex={1}
                 />
-            </View>
+            </ButtonContainer>
         </View>
     )
 }
