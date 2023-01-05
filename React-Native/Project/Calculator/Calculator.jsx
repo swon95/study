@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import Styled from 'styled-components'
+import { useState } from 'react'
 
 // 버튼 타입에 따른 색 변화
 const COLOR = {
@@ -33,18 +34,18 @@ const Button = ({ text, onPress, flex, type }) => {
 
         // 자식 컴포넌트 flex
         // backgroundColor 는 타입마다 색깔이 다르기에 상단에 재 정의
-        <TouchableOpacity onPress={onPress} style={{ 
-            flex, 
-            backgroundColor, 
+        <TouchableOpacity onPress={onPress} style={{
+            flex,
+            backgroundColor,
             // 가운데정렬
-            justifyContent: 'center', 
+            justifyContent: 'center',
             alignItems: 'center',
 
             // paddingVertical: 15, // top 과 bottom 을 늘려주는 속성
             height: 50, // 높이 고정
             borderWidth: 0.2,
             borderColor: 'black',
-            }}>
+        }}>
             <Text style={{ color: 'white', fontSize: 25 }}>
                 {text}
             </Text>
@@ -58,9 +59,25 @@ const ButtonContainer = Styled.View`
 `
 
 export default () => {
+
+    // 사용자가 입력하는 값을 받는 state
+    const [input, setInput] = useState(0) // 12
+
+    // 입력받은 값을 기반으로 연산자를 선택했을때의 state
+    const [currentOperator, setCurrentOperator] = useState(null) // +
+
+    // 새로 입력받은 값 이전에 받았던 값을 저장하는 state
+    const [result, setResult] = useState(null) // 12 + 2 = 14
+
+    // 이전 계산에 사용됬던(입력받았던) 피연산자의 state 
+    const [tempInput, setTempInput] = useState(null) // 14
+
+    // temp 에 해당하는 값을 계산하기위한 연산자가 담긴 state
+    const [tempOperator, setTempOpearator] = useState(null) // 16, 18, 20, 22, 24.....
+
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
-        <View style={{ flex: 1, width: 250 }}>
+        <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
             {/* 결과 */}
 
             {/* [AC ~ /] */}
