@@ -58,6 +58,18 @@ const ButtonContainer = Styled.View`
     width: 100%;
 `
 
+const InputContainer = Styled.View`
+    background-color: ${COLOR.RESULT}
+    min-height: 50px
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px 5px;
+`
+// padding: 5px // top, right, bottom, left => 4 방향 모두 적용
+// padding: 5px, 10px // top, bottom (Vertical), left, right (horizontal)
+// padding: 1px, 2px, 3px, 3px // top, right, bottom, left // 각각의 방향에 간격 지정
+
+
 export default () => {
 
     // 사용자가 입력하는 값을 받는 state
@@ -73,12 +85,15 @@ export default () => {
     const [tempInput, setTempInput] = useState(null) // 14
 
     // temp 에 해당하는 값을 계산하기위한 연산자가 담긴 state
-    const [tempOperator, setTempOpearator] = useState(null) // 16, 18, 20, 22, 24.....
+    const [tempOperator, setTempOperator] = useState(null) // 16, 18, 20, 22, 24.....
 
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
         <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
             {/* 결과 */}
+            <InputContainer>
+                <Text style={{ color: 'white', fontSize: 35, textAlign: 'right' }}>{input}</Text>
+            </InputContainer>
 
             {/* [AC ~ /] */}
             {/* width 를 지정해주지 않으면 화면에 출력되지 않음 */}
