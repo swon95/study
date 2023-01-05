@@ -113,26 +113,20 @@ export default () => {
                     flex={1}
                 />
             </ButtonContainer>
+
             {/* [7 ~ x] */}
             <ButtonContainer>
-                <Button
-                    type='num'
-                    text='7'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='8'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='9'
-                    onPress={() => null}
-                    flex={1}
-                />
+                {[7, 8, 9].map((num) => (
+                    <Button
+                        type='num'
+                        // 실제로 바뀌는 부분
+                        text={`${num}`} // text 는 string 타입이어야 하므로 ``(백틱)으로 감싸줌
+                        // text={String(num)} // 이 방법을 사용해도 무관
+                        onPress={() => null}
+                        flex={1}
+                    />
+                ))}
+
                 <Button
                     type='operator'
                     text='X'
@@ -140,26 +134,18 @@ export default () => {
                     flex={1}
                 />
             </ButtonContainer>
+
             {/* [4 ~ -] */}
             <ButtonContainer>
-                <Button
-                    type='num'
-                    text='4'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='5'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='6'
-                    onPress={() => null}
-                    flex={1}
-                />
+                {[4, 5, 6].map((num) => (
+                    <Button
+                        type='num'
+                        text={`${num}`}
+                        onPress={() => null}
+                        flex={1}
+                    />
+                ))}
+    
                 <Button
                     type='operator'
                     text='-'
@@ -167,26 +153,18 @@ export default () => {
                     flex={1}
                 />
             </ButtonContainer>
+
             {/* [1 ~ +] */}
             <ButtonContainer>
-                <Button
-                    type='num'
-                    text='1'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='2'
-                    onPress={() => null}
-                    flex={1}
-                />
-                <Button
-                    type='num'
-                    text='3'
-                    onPress={() => null}
-                    flex={1}
-                />
+                {[1, 2, 3].map((num) => (
+                    <Button
+                        type='num'
+                        text={`${num}`}
+                        onPress={() => null}
+                        flex={1}
+                    />
+                ))}
+
                 <Button
                     type='operator'
                     text='+'
@@ -194,6 +172,7 @@ export default () => {
                     flex={1}
                 />
             </ButtonContainer>
+
             {/* [0 ~ =] */}
             <ButtonContainer>
                 <Button
