@@ -39,8 +39,8 @@ export const useCalculator = () => {
             setResult(input) // 새로 넘어온 값 이전의 값을 저장
             setInput(num) // input 값을 새로 넘어온 값으로 변경
             setIsClickedOperator(false) // Operator 를 클릭해 한자리수로 바꿔줄때 isClickedOperator 를 누르는 순간은 연산자가 클릭되지 않았다는 뜻이므로
-        } 
-        
+        }
+
         // 없을때
         else {
             // 현재는 입력받은 값만 출력이 되는데,
@@ -71,14 +71,14 @@ export const useCalculator = () => {
             setIsClickedEqual(false)
         } else {
             // operator 가 '=' 일때 로직
-            var finalResult = result
+            let finalResult = result
             // 예외처리
-            var finalInput = isClickedEqual ? tempInput : input // 직전에 = 가 클릭이 됬을때와 아닐때
+            const finalInput = isClickedEqual ? tempInput : input // 직전에 = 가 클릭이 됬을때와 아닐때
             // 예외처리
             // 직전에 = 을 눌렀는지 아닌지
-            var finalOperator = currentOperator ? tempOperator : currentOperator // 직전에 = 를 눌렀으면 tempOperator 를 사용하고, 그렇지 않으면 currentOperator 사용
-            
-            switch ( currentOperator ) {
+            const finalOperator = isClickedEqual ? tempOperator : currentOperator // 직전에 = 를 눌렀으면 tempOperator 를 사용하고, 그렇지 않으면 currentOperator 사용
+
+            switch (finalOperator) {
                 case '+':
                     finalResult = result + finalInput // 현재 result 에 있는 값과 input 에 있는 값을 currentOperator 로 연산
                     break
@@ -110,11 +110,11 @@ export const useCalculator = () => {
         if (hasInput) { // C 로직
             setInput(0)
         } else { // AC 로직
-        setInput(0)
-        setCurrentOperator(null)
-        setResult(null)
-        setTempInput(null)
-        setTempOperator(null)
+            setInput(0)
+            setCurrentOperator(null)
+            setResult(null)
+            setTempInput(null)
+            setTempOperator(null)
         }
     }
     return {
