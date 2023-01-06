@@ -87,6 +87,21 @@ export default () => {
     // temp 에 해당하는 값을 계산하기위한 연산자가 담긴 state
     const [tempOperator, setTempOperator] = useState(null) // 16, 18, 20, 22, 24.....
 
+
+    const onPressNum = (num) => {
+        
+        // 현재는 입력받은 값만 출력이 되는데,
+        // setInput(num)
+
+        // 입력받은 숫자를 계속해서 이어붙이는형태로 보여지려면 어떻게해야할까
+        // setInput( input + num ) // ??? 이 형태는 입력받은 값과 입력된 값이 모두 숫자형 타입이기 때문에 연산이되어버림 bad case
+        
+        // const newInput = `${input}${num}` // 데이터를 숫자형이 아닌 문자열로 인식하게끔 하여 받음 good case // 하지만 초기 값인 0도 string 으로 인식하여 0 뒤에 값들이 이어짐
+
+        const newInput = Number(`${input}${num}`) // 값을 입력할 때 0 이 없어지고 입력받은 값부터 보여지게 Number 로 감싸줌
+        setInput(newInput)
+    }
+
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
         <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
@@ -122,7 +137,7 @@ export default () => {
                         // 실제로 바뀌는 부분
                         text={`${num}`} // text 는 string 타입이어야 하므로 ``(백틱)으로 감싸줌
                         // text={String(num)} // 이 방법을 사용해도 무관
-                        onPress={() => null}
+                        onPress={() => onPressNum(num)}
                         flex={1}
                     />
                 ))}
@@ -141,7 +156,7 @@ export default () => {
                     <Button
                         type='num'
                         text={`${num}`}
-                        onPress={() => null}
+                        onPress={() => onPressNum(num)}
                         flex={1}
                     />
                 ))}
@@ -160,7 +175,7 @@ export default () => {
                     <Button
                         type='num'
                         text={`${num}`}
-                        onPress={() => null}
+                        onPress={() => onPressNum(num)}
                         flex={1}
                     />
                 ))}
@@ -178,7 +193,7 @@ export default () => {
                 <Button
                     type='num'
                     text='0'
-                    onPress={() => null}
+                    onPress={() => onPressNum(num)}
                     flex={3}
                 />
                 <Button
