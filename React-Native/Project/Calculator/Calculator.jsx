@@ -145,6 +145,15 @@ export default () => {
         }
     }
 
+    // 초기화 로직
+    const onPressReset = () => {
+        setInput(0)
+        setCurrentOperator(null)
+        setResult(null)
+        setTempInput(null)
+        setTempOperator(null)
+    }
+
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
         <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
@@ -159,7 +168,8 @@ export default () => {
                 <Button
                     type='reset'
                     text='AC'
-                    onPress={() => null}
+                    onPress={() => onPressReset}
+                    // onPress={onPressReset} // 위랑 똑같은 코드임
                     // 4칸 중 3칸 차지
                     flex={3}
 
