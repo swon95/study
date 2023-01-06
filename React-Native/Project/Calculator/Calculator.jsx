@@ -168,7 +168,7 @@ export default () => {
                 <Button
                     type='reset'
                     text='AC'
-                    onPress={() => onPressReset}
+                    onPress={() => onPressReset()}
                     // onPress={onPressReset} // 위랑 똑같은 코드임
                     // 4칸 중 3칸 차지
                     flex={3}
