@@ -92,25 +92,56 @@ export default () => {
 
 
     const onPressNum = (num) => {
-        
-        // 현재는 입력받은 값만 출력이 되는데,
-        // setInput(num)
 
-        // 입력받은 숫자를 계속해서 이어붙이는형태로 보여지려면 어떻게해야할까
-        // setInput( input + num ) // ??? 이 형태는 입력받은 값과 입력된 값이 모두 숫자형 타입이기 때문에 연산이되어버림 bad case
-        
-        // const newInput = `${input}${num}` // 데이터를 숫자형이 아닌 문자열로 인식하게끔 하여 받음 good case // 하지만 초기 값인 0도 string 으로 인식하여 0 뒤에 값들이 이어짐
+        // currentOperator 가 있을때와 없을때의 로직
 
-        const newInput = Number(`${input}${num}`) // 값을 입력할 때 0 이 없어지고 입력받은 값부터 보여지게 Number 로 감싸줌
-        setInput(newInput)
+        // 있을때
+        if (currentOperator) {
+            setResult(input) // 새로 넘어온 값 이전의 값을 저장
+            setInput(num) // input 값을 새로 넘어온 값으로 변경
+        } 
+        
+        // 없을때
+        else {
+            // 현재는 입력받은 값만 출력이 되는데,
+            // setInput(num)
+
+            // 입력받은 숫자를 계속해서 이어붙이는형태로 보여지려면 어떻게해야할까
+            // setInput( input + num ) // ??? 이 형태는 입력받은 값과 입력된 값이 모두 숫자형 타입이기 때문에 연산이되어버림 bad case
+
+            // const newInput = `${input}${num}` // 데이터를 숫자형이 아닌 문자열로 인식하게끔 하여 받음 good case // 하지만 초기 값인 0도 string 으로 인식하여 0 뒤에 값들이 이어짐
+
+            const newInput = Number(`${input}${num}`) // 값을 입력할 때 0 이 없어지고 입력받은 값부터 보여지게 Number 로 감싸줌
+            setInput(newInput)
+        }
     }
+
 
     const onPressOperator = (operator) => {
         // 예외처리 - operator 가 '=' 이 아닐때만 CurrentOperator 실행
         if (operator !== '=') {
             setCurrentOperator(operator)
         } else {
-            // '=' 일때는
+            // operator 가 '=' 일때 로직
+            var finalResult = result
+            switch ( currentOperator ) {
+                case '+':
+                    finalResult = result + input // 현재 result 에 있는 값과 input 에 있는 값을 currentOperator 로 연산
+                    break
+                case '-':
+                    finalResult = result - input
+                    break
+                case '*':
+                    finalResult = result * input
+                    break
+                case '/':
+                    finalResult = result / input
+                    break
+                default:
+                    break
+            }
+            setResult(finalResult) // 계산 로직을 원래 State 에 세팅
+            setInput(finalResult)
         }
     }
 
@@ -132,9 +163,9 @@ export default () => {
                     // 4칸 중 3칸 차지
                     flex={3}
 
-                    // undefined or false 굳이 해주지 않아도 됨
-                    // isSelected= {undefined}
-                    // isSelected= {false}
+                // undefined or false 굳이 해주지 않아도 됨
+                // isSelected= {undefined}
+                // isSelected= {false}
                 />
                 <Button
                     type='operator'
@@ -142,7 +173,7 @@ export default () => {
                     onPress={() => onPressOperator('/')}
                     // 4칸 중 1칸 차지
                     flex={1}
-                    isSelected= {currentOperator === '/'} // true
+                    isSelected={currentOperator === '/'} // true
                 />
             </ButtonContainer>
 
@@ -166,7 +197,7 @@ export default () => {
                     text='*'
                     onPress={() => onPressOperator('*')}
                     flex={1}
-                    isSelected= {currentOperator === '*'}
+                    isSelected={currentOperator === '*'}
                 />
             </ButtonContainer>
 
@@ -181,13 +212,13 @@ export default () => {
                         flex={1}
                     />
                 ))}
-    
+
                 <Button
                     type='operator'
                     text='-'
                     onPress={() => onPressOperator('-')}
                     flex={1}
-                    isSelected= {currentOperator === '-'}
+                    isSelected={currentOperator === '-'}
                 />
             </ButtonContainer>
 
@@ -208,7 +239,7 @@ export default () => {
                     text='+'
                     onPress={() => onPressOperator('+')}
                     flex={1}
-                    isSelected= {currentOperator === '+'}
+                    isSelected={currentOperator === '+'}
                 />
             </ButtonContainer>
 
