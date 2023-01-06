@@ -16,7 +16,7 @@ const COLOR = {
 // onPress == 클릭했을때의 동작
 // flex == 컨테이너에서 버튼들의 크기를 제어
 // type == 타입에 따른 색깔의 변화
-const Button = ({ text, onPress, flex, type }) => {
+const Button = ({ text, onPress, flex, type, isSelected }) => {
     const backgroundColor =
         // type 이 reset 일때는 COLOR.RESET
         type === 'reset'
@@ -43,7 +43,10 @@ const Button = ({ text, onPress, flex, type }) => {
 
             // paddingVertical: 15, // top 과 bottom 을 늘려주는 속성
             height: 50, // 높이 고정
-            borderWidth: 0.2,
+            // isSelected == 버튼 클릭 시 선택되어있다 라는 지속효과를 주기 위해 사용
+            // true(선택됬을때 == 1) : false(선택되지 않았을때 == 0.2)
+            // 컴포넌트에 적용할 때 false 는 지정해주지 않아도 됨 
+            borderWidth: isSelected ? 1 : 0.2,
             borderColor: 'black',
         }}>
             <Text style={{ color: 'white', fontSize: 25 }}>
@@ -102,6 +105,15 @@ export default () => {
         setInput(newInput)
     }
 
+    const onPressOperator = (operator) => {
+        // 예외처리 - operator 가 '=' 이 아닐때만 CurrentOperator 실행
+        if (operator !== '=') {
+            setCurrentOperator(operator)
+        } else {
+            // '=' 일때는
+        }
+    }
+
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
         <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
@@ -119,20 +131,27 @@ export default () => {
                     onPress={() => null}
                     // 4칸 중 3칸 차지
                     flex={3}
+
+                    // undefined or false 굳이 해주지 않아도 됨
+                    // isSelected= {undefined}
+                    // isSelected= {false}
                 />
                 <Button
                     type='operator'
                     text='/'
-                    onPress={() => null}
+                    onPress={() => onPressOperator('/')}
                     // 4칸 중 1칸 차지
                     flex={1}
+                    isSelected= {currentOperator === '/'} // true
                 />
             </ButtonContainer>
 
             {/* [7 ~ x] */}
             <ButtonContainer>
+                {/* map 함수는 각각의 컴포넌트를 반환할 때 고유한 키 값이 존재해야함 */}
                 {[7, 8, 9].map((num) => (
                     <Button
+                        key={`num-${num}`} // num-7, num-8, num-9
                         type='num'
                         // 실제로 바뀌는 부분
                         text={`${num}`} // text 는 string 타입이어야 하므로 ``(백틱)으로 감싸줌
@@ -144,9 +163,10 @@ export default () => {
 
                 <Button
                     type='operator'
-                    text='X'
-                    onPress={() => null}
+                    text='*'
+                    onPress={() => onPressOperator('*')}
                     flex={1}
+                    isSelected= {currentOperator === '*'}
                 />
             </ButtonContainer>
 
@@ -154,6 +174,7 @@ export default () => {
             <ButtonContainer>
                 {[4, 5, 6].map((num) => (
                     <Button
+                        key={`num-${num}`}
                         type='num'
                         text={`${num}`}
                         onPress={() => onPressNum(num)}
@@ -164,8 +185,9 @@ export default () => {
                 <Button
                     type='operator'
                     text='-'
-                    onPress={() => null}
+                    onPress={() => onPressOperator('-')}
                     flex={1}
+                    isSelected= {currentOperator === '-'}
                 />
             </ButtonContainer>
 
@@ -173,6 +195,7 @@ export default () => {
             <ButtonContainer>
                 {[1, 2, 3].map((num) => (
                     <Button
+                        key={`num-${num}`}
                         type='num'
                         text={`${num}`}
                         onPress={() => onPressNum(num)}
@@ -183,8 +206,9 @@ export default () => {
                 <Button
                     type='operator'
                     text='+'
-                    onPress={() => null}
+                    onPress={() => onPressOperator('+')}
                     flex={1}
+                    isSelected= {currentOperator === '+'}
                 />
             </ButtonContainer>
 
@@ -199,7 +223,7 @@ export default () => {
                 <Button
                     type='operator'
                     text='='
-                    onPress={() => null}
+                    onPress={() => onPressOperator('=')}
                     flex={1}
                 />
             </ButtonContainer>
