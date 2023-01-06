@@ -87,12 +87,26 @@ export default () => {
         onPressNum,
         onPressOperator,
         onPressReset,
-        
+
     } = useCalculator() // Hooks 사용
 
     return (
         // 부모 컴포넌트에 속성을 부여해야 자식에도 적용
         <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
+
+            {/* 릴리즈 환경에서는 DEV 값이 False 가 되기 때문에 렌더링 되지 않고 개발환경에서만 확인할 수 있음 */}
+            {__DEV__ && (
+                <>
+                    {/* 테스트코드 영역 */}
+                    <Text>input: {input}</Text>
+                    <Text>currentOperator: {currentOperator}</Text>
+                    <Text>result: {result}</Text>
+                    <Text>tempInput: {tempInput}</Text>
+                    <Text>tempOperator: {tempOperator}</Text>
+                </>
+            )}
+
+
             {/* 결과 */}
             <InputContainer>
                 <Text style={{ color: 'white', fontSize: 35, textAlign: 'right' }}>{input}</Text>
