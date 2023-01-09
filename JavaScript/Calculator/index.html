@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="row">
+        <input class="inp" disabled id="top-inp"></input>
+    </div>
+    <div class="row">
+        <div class="btn" onclick="inputNum(7)">7</div>
+        <div class="btn" onclick="inputNum(8)">8</div>
+        <div class="btn" onclick="inputNum(9)">9</div>
+        <div class="btn" onclick="inputEqu()">=</div>
+    </div>
+    <div class="row">
+        <div class="btn" onclick="inputNum(4)">4</div>
+        <div class="btn" onclick="inputNum(5)">5</div>
+        <div class="btn" onclick="inputNum(6)">6</div>
+        <div class="btn" onclick="inputOper('+')">+</div>
+    </div>
+    <div class="row">
+        <div class="btn" onclick="inputNum(1)">1</div>
+        <div class="btn" onclick="inputNum(2)">2</div>
+        <div class="btn" onclick="inputNum(3)">3</div>
+        <div class="btn" onclick="inputOper('-')">-</div>
+    </div>
+    <div class="row">
+        <div class="btn btn-large" onclick="inputNum(0)">0</div>
+        <div class="btn" onclick="inputOper('/')">/</div>
+        <div class="btn" onclick="inputOper('*')">*</div>
+    </div>
+</body>
+</html>
