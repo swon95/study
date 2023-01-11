@@ -2,6 +2,8 @@ const path = require('path')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// css 를 압축하는 플러그인
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
     // 자바스크립트 파일의 진입점을 나타냄
@@ -18,7 +20,7 @@ module.exports = {
     // 빌드한 파일과 원본 파일을 서로 연결시켜주는 기능
     devtool: 'source-map',
     mode: 'development',
-    Plugin: [
+    plugins: [
         new HtmlWebpackPlugin({
             // 제목
             title: 'keyboard',
@@ -28,11 +30,22 @@ module.exports = {
             inject: 'body',
             favicon: './favicon.ico',
         }),
-        new MiniCssExtractPlugin({filename})
+        new MiniCssExtractPlugin({filename:'style.css'})
     ],
+    module: {
+        // .css 파일을 ~~.loader 를 사용해 불러오기
+        rules:[
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            }
+        ]
+    },
     optimization: {
         minimizer: [
-            new TerserWebpackPlugin()
+            // 초기화
+            new TerserWebpackPlugin(),
+            new CssMinimizerPlugin()
         ]
     }
 }
