@@ -1,7 +1,4 @@
-import '../css/style.css'
-
-let a = 4
-
-let b = 5
-
-console.log(a+b)
+import "../css/style.css";
+let a = 1;
+let b = 2;
+console.log(a + b);
