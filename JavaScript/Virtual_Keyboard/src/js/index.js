@@ -1,7 +1,7 @@
 import '../css/style.css'
 
-let a = 1
+let a = 4
 
-let b = 2
+let b = 5
 
 console.log(a+b)

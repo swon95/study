@@ -36,3 +36,8 @@ npm run build
 
 production 옵션이 추가되지 않을 시 development mode 로 빌드가 된다.
 
+package.json Scripts 에 dev 를 추가함으로써 webpack-dev-server 를 아래 명령어로 실행 가능
+```
+npm run dev
+```
+

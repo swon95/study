@@ -20,6 +20,15 @@ module.exports = {
     // 빌드한 파일과 원본 파일을 서로 연결시켜주는 기능
     devtool: 'source-map',
     mode: 'development',
+    // webpack-dev-server
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+        // webpack-dev-server 를 실행할때마다 브라우저를 새창으로 열기
+        open: true,
+        // index.html 에 변화가 생길때마다 reload => 변화감지
+        watchFiles: 'index.html'
+    },
     plugins: [
         new HtmlWebpackPlugin({
             // 제목
