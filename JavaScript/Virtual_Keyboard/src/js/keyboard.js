@@ -1,6 +1,8 @@
 export class Keyboard {
   // Private class fields
+  // El == Element
   #swichEl;
+  #fontSelectEl;
 
   constructor() {
     this.#assignElement();
@@ -9,6 +11,7 @@ export class Keyboard {
 
   #assignElement() {
     this.#swichEl = document.getElementById("switch");
+    this.#fontSelectEl = document.getElementById("font");
   }
 
   #addEvent() {
@@ -17,6 +20,11 @@ export class Keyboard {
         "theme",
         event.target.checked ? "dark-mode" : "" // boolean
       );
+    });
+    this.#fontSelectEl.addEventListener("change", (event) => {
+      // 폰트 적용
+      document.body.style.fontFamily = event.target.value;
+      //   console.log(event.target.value);
     });
   }
 }
