@@ -3,6 +3,7 @@ export class Keyboard {
   // El == Element
   #swichEl;
   #fontSelectEl;
+  #containerEl;
 
   constructor() {
     this.#assignElement();
@@ -10,21 +11,34 @@ export class Keyboard {
   }
 
   #assignElement() {
-    this.#swichEl = document.getElementById("switch");
-    this.#fontSelectEl = document.getElementById("font");
+    // container Element 를 기반으로
+    this.#containerEl = document.getElementById("container");
+    // 하위 Element 들을 탐색 => 비용절감 효과
+    this.#swichEl = this.#containerEl.querySelector("#switch");
+    this.#fontSelectEl = this.#containerEl.querySelector("#font");
   }
 
   #addEvent() {
-    this.#swichEl.addEventListener("change", (event) => {
-      document.documentElement.setAttribute(
-        "theme",
-        event.target.checked ? "dark-mode" : "" // boolean
-      );
+    this.#swichEl.addEventListener("change", this.#onChangeTheme);
+    this.#fontSelectEl.addEventListener("change", this.#onChangeFont);
+
+    document.addEventListener("keydown", (event) => {
+      console.log(event.code);
     });
-    this.#fontSelectEl.addEventListener("change", (event) => {
-      // 폰트 적용
-      document.body.style.fontFamily = event.target.value;
-      //   console.log(event.target.value);
+    document.addEventListener("keyup", (event) => {
+      //   console.log("keyup");
     });
+  }
+
+  // Darkmode 이벤트핸들러 리펙토링
+  #onChangeTheme(event) {
+    document.documentElement.setAttribute(
+      "theme",
+      event.target.checked ? "dark-mode" : ""
+    );
+  }
+  // Font 이벤트핸들러 리펙토링
+  #onChangeFont(event) {
+    document.body.style.fontFamily = event.target.value;
   }
 }
