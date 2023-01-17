@@ -41,3 +41,5 @@ package.json Scripts 에 dev 를 추가함으로써 webpack-dev-server 를 아�
 npm run dev
 ```
 
+
+keydown, keyup 이벤트에 대한 코드를 리펙토링하여 else if 문으로 합칠수 없을까?

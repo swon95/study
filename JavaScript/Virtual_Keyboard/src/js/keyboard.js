@@ -5,6 +5,8 @@ export class Keyboard {
   #fontSelectEl;
   #containerEl;
   #keyboardEl;
+  #inputGroupEl;
+  #inputEl;
 
   constructor() {
     this.#assignElement();
@@ -18,6 +20,8 @@ export class Keyboard {
     this.#swichEl = this.#containerEl.querySelector("#switch");
     this.#fontSelectEl = this.#containerEl.querySelector("#font");
     this.#keyboardEl = this.#containerEl.querySelector("#keyboard");
+    this.#inputGroupEl = this.#containerEl.querySelector("#input-group");
+    this.#inputEl = this.#inputGroupEl.querySelector("#input");
   }
 
   #addEvent() {
@@ -25,23 +29,38 @@ export class Keyboard {
     this.#fontSelectEl.addEventListener("change", this.#onChangeFont);
 
     // 키보드를 눌렀을 때
-    document.addEventListener("keydown", (event) => {
-      console.log(event.code);
-      if (this.#keyboardEl.querySelector(`[data-code=${event.code}]`)) {
-        this.#keyboardEl
-          .querySelector(`[data-code=${event.code}]`)
-          .classList.add("active");
-      }
-    });
+    document.addEventListener("keydown", this.#onKeyDown.bind(this));
+
     // 누른 키보드를 뗏을 때
-    document.addEventListener("keyup", (event) => {
-      //   console.log("keyup");
-      if (this.#keyboardEl.querySelector(`[data-code=${event.code}]`)) {
-        this.#keyboardEl
-          .querySelector(`[data-code=${event.code}]`)
-          .classList.remove("active");
-      }
-    });
+    document.addEventListener("keyup", this.#onKeyUp.bind(this));
+
+    this.#inputEl.addEventListener("input", this.#onInput);
+  }
+
+  #onInput(event) {
+    event.target.value = event.target.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/, "");
+  }
+
+  #onKeyDown(event) {
+    // console.log(event.code);
+
+    // 정규식의 test 메소드를 사용
+    // console.log(event.key, /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(event.key));
+    this.#inputGroupEl.classList.toggle(
+      "error",
+      /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(event.key)
+    );
+
+    this.#keyboardEl
+      .querySelector(`[data-code=${event.code}]`)
+      ?.classList.add("active"); // Optional chaining
+  }
+
+  #onKeyUp(event) {
+    //   console.log("keyup");
+    this.#keyboardEl
+      .querySelector(`[data-code=${event.code}]`)
+      ?.classList.remove("active");
   }
 
   // Darkmode 이벤트핸들러 리펙토링
