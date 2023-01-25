@@ -8,7 +8,7 @@ function App() {
 
   const [imageList, setImageList] = useState<string[]>([]);
   // console.log(imageList);
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles: any) => {
     console.log(acceptedFiles);
     // Do something with the files
       if (acceptedFiles.length) {
