@@ -1,0 +1,9 @@
+body {
+    background-image: url(https://i.pinimg.com/originals/29/1c/0e/291c0e09cb84f800a708624b547779ca.png);
+    /* 화면높이의 100% */
+    height: 100vh;
+    /* 이미지 반복 제거 */
+    background-repeat: no-repeat;
+    /* 반복이 제거된 여백 채우기 */
+    background-size: cover;
+}

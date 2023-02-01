@@ -1,5 +1,9 @@
 import {useEffect} from 'react'
 import './App.css';
+import WeatherBox from './component/WeatherBox';
+import WeatherButton from './component/WeatherButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components'
 
 function App() {
 
@@ -27,10 +31,22 @@ function App() {
   }, [])
 
   return (
-    <div>
-      무야홍 ~
-    </div>
+    <ContentBox>
+        <WeatherBox />
+        <WeatherButton />
+    </ContentBox>
   );
 }
 
 export default App;
+
+
+const ContentBox = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+
