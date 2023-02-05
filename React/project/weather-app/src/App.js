@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import './App.css';
 import WeatherBox from './component/WeatherBox';
 import WeatherButton from './component/WeatherButton';
@@ -6,9 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components'
 
 function App() {
+  // 초기 null 상태인 weather 에 data 가 들어왔을 때 ? => 바뀌는 값 => setWeather
+  const [weather, setWeather] = useState(null)
 
   // 현재 위치정보를 가져오기위해 getCurrentLocation
   const getCurrentLocation = () => {
+    // weather state 생성
 
     // 익명함수 생성 ~ // 매개변수로는 position 을 받음
     navigator.geolocation.getCurrentPosition((position) => {
@@ -20,10 +23,11 @@ function App() {
   }
 
     const getWeatherByCurrentLocation = async(lat, lon) => {
-      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=72346c86cf22cc5b98c7148afee9a7a1`
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=72346c86cf22cc5b98c7148afee9a7a1&units=metric`
       let response = await fetch(url)
       let data = await response.json()
-      console.log('data', data)
+      // console.log('data', data)
+      setWeather(data)
     }
 
   useEffect(() => {
@@ -32,7 +36,7 @@ function App() {
 
   return (
     <ContentBox>
-        <WeatherBox />
+        <WeatherBox weather={weather} />
         <WeatherButton />
     </ContentBox>
   );

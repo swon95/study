@@ -1,10 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const WeatherBox = () => {
+// weather 정보만 가져오기 위해 Destructuring
+const WeatherBox = ({ weather }) => {
+  // props.weather
+  console.log("weather?", weather)
   return (
     <BorderBox>
-      무야홍
+      <div>{weather?.name}</div>
+      <div>{weather?.main.temp} / {weather?.main.temp*1.8+32}</div>
+      <div>{weather?.weather[0].description}</div>
     </BorderBox>
   )
 }
