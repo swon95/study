@@ -1,16 +1,23 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const WeatherButton = () => {
+const WeatherButton = ({ citise, setCity }) => {
+  console.log("citise?", citise);
+
   return (
     <div>
-      <Button variant="outline-primary">강릉</Button>
-      <Button variant="outline-danger">고성</Button>
-      <Button variant="outline-success">동해</Button>
-      <Button variant="outline-warning">삼척</Button>
-      <Button variant="outline-info">속초</Button>
-      <Button variant="outline-secondary">양양</Button>
+      <Button variant="outline-primary">현재 위치</Button>
+
+      {citise.map((item, index) => (
+        <Button
+          variant="outline-primary"
+          key={index}
+          onClick={() => setCity(item)}
+        >
+          {item}
+        </Button>
+      ))}
     </div>
   );
 };

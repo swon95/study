@@ -8,6 +8,8 @@ import styled from 'styled-components'
 function App() {
   // 초기 null 상태인 weather 에 data 가 들어왔을 때 ? => 바뀌는 값 => setWeather
   const [weather, setWeather] = useState(null)
+  const [city, setCity] = useState('')
+  const citise = ['Gangneung', 'Goseong', 'Samcheok', 'Sokcho', 'Yangyang']
 
   // 현재 위치정보를 가져오기위해 getCurrentLocation
   const getCurrentLocation = () => {
@@ -30,14 +32,36 @@ function App() {
       setWeather(data)
     }
 
+    const getWeatherByCity = async() => { // city State 가져오기
+      // useEffect 에서 이미 바뀐 값을 가져오기 때문에 비동기처리 x
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=72346c86cf22cc5b98c7148afee9a7a1&units=metric`
+      let response = await fetch(url)
+      let data = await response.json()
+      console.log('data', data)
+      setWeather(data)
+    }
   useEffect(() => {
-    getCurrentLocation()
-  }, [])
+    // 만약 city 의 값이 비어있다면,
+    if (city == "") {
+      // 함수 실행
+      getCurrentLocation()
+    }
+    // 그게 아니라 뭔가 들어있다면, 
+    else {
+      // 함수 실행
+      getWeatherByCity()
+    }
+  }, [city])
+
+  // useEffect(() => {
+  //   // console.log('city', city)
+  //   getWeatherByCity()
+  // }, [city])
 
   return (
     <ContentBox>
         <WeatherBox weather={weather} />
-        <WeatherButton />
+        <WeatherButton citise={citise} setCity={setCity}/>
     </ContentBox>
   );
 }
