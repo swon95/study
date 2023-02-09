@@ -17,6 +17,10 @@ const WeatherBox = ({ weather }) => {
 export default WeatherBox
 
 const BorderBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
   border: 3px solid white;
   border-radius: 30px;
   padding: 50px

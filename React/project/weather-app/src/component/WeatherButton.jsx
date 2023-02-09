@@ -7,7 +7,12 @@ const WeatherButton = ({ citise, setCity }) => {
 
   return (
     <div>
-      <Button variant="outline-primary">현재 위치</Button>
+      <Button
+        variant="outline-primary"
+        // onClick={() => handleCityChange('current')}
+      >
+        현재 위치
+      </Button>
 
       {citise.map((item, index) => (
         <Button
