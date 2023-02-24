@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from 'react-native';
-
+// 더 이상 유지 관리되지 않는 라이브러리로 아이폰 13, 14 이상은 지원 x
+import { NavigationContainer } from '@react-navigation/native';
+import TabBar from './src/navigation/Tab';
 
 // // 생성해야할 컴포넌트
 // Header
@@ -8,34 +9,6 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 // Division
 // FriendSection
 // FriendList
-
-const Header = (props) => {
-  return (<Text>{props.title}</Text>)
-}
-const MyProfile = () => {
-  return (<Profile
-    name="콬키리"
-    uri="https://e1.pngegg.com/pngimages/623/472/png-clipart-emoji-sticker-gray-and-white-elephant-illustration.png"
-    profileSize={40}
-  />)
-}
-const Division = () => {
-  return (<Text>Division</Text>)
-}
-const FriendSection = () => {
-  return (<Text>FriendSection</Text>)
-}
-const FriendList = () => {
-  return (
-    <View>
-      <Profile name="ㅋ코코" uri="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz-aQ8UqqD-10GmITuSfQVfsQRAmMPTtbvXw3NFUhZeKJbRzR-Ffa6tnVQz0B5EtxFnM&usqp=CAU" profileSize={30} />
-      <Profile name="코끼1" uri="https://emojigraph.org/media/openmoji/elephant_1f418.png" profileSize={30} />
-      <Profile name="코끼2" uri="https://www.supercoloring.com/sites/default/files/styles/coloring_full/public/cif/2022/02/569-elephant-emoji-coloring-page.png" profileSize={30} />
-      <Profile name="코끼3" uri="https://www.supercoloring.com/sites/default/files/styles/coloring_full/public/cif/2022/03/569-elephant-emoji-coloring-page_1.png" profileSize={30} />
-      <Profile name="코끼4" uri="https://www.supercoloring.com/sites/default/files/styles/coloring_full/public/cif/2022/03/570-mammoth-emoji-coloring-page.png" profileSize={30} />
-    </View>
-  )
-}
 
 // 함수형 컴포넌트
 // 함수형 컴포넌트는 변화하는 값을 관리할 수 없지만 이를 Hooks 로 해결할 수 있다.
@@ -58,42 +31,33 @@ const FriendList = () => {
 // }
 
 // 클래스형 컴포넌트
-class Profile extends React.Component {
-  render() {
-    return (
+// class Profile extends React.Component {
+//   render() {
+//     return (
 
-      <View style={{ flexDirection: "row" }}>
-        <Image
-          source={{
-            // 클래스 컴포넌트에서 props 에 접근 하려면 this. 를 사용
-            uri: this.props.uri,
-          }}
-          style={{
-            width: this.props.profileSize,
-            height: this.props.profileSize,
-          }} />
-        <Text>{this.props.name}</Text>
-      </View>
-    )
-  }
+//       <View style={{ flexDirection: "row" }}>
+//         <Image
+//           source={{
+//             // 클래스 컴포넌트에서 props 에 접근 하려면 this. 를 사용
+//             uri: this.props.uri,
+//           }}
+//           style={{
+//             width: this.props.profileSize,
+//             height: this.props.profileSize,
+//           }} />
+//         <Text>{this.props.name}</Text>
+//       </View>
+//     )
+//   }
+// }
+
+const App = () => {
+  return (
+  <NavigationContainer>
+    <TabBar />
+  </NavigationContainer>
+  )
 }
 
-export default function App() {
-  return <View style={styles.container}>
-    <Header title="친구" />
-    <MyProfile />
-    <Division />
-    <FriendSection />
-    <FriendList />
-  </View>;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
 
