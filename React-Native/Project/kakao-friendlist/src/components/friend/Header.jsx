@@ -4,7 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 const IconButton = (props) => {
     return(
-        <TouchableOpacity style={{ paddingHorizontal: 6 }}>
+        // hitSlop 을 통해 터치 범위 수정
+        <TouchableOpacity hitSlop={{ top: 15, bottom: 15 }} style={{ paddingHorizontal: 6 }}>
             <Ionicons name={props.name} size={24} color="black" />
         </TouchableOpacity>
     )
