@@ -15,6 +15,7 @@
     "dayjs": "^1.11.1",
     "emoji-mart": "^3.0.1",
     "firebase": "^9.18.0",
+    "md5": "^2.3.0",
     "react": "^17.0.2",
     "react-avatar-editor": "^12.0.0",
     "react-colorful": "^5.5.1",
