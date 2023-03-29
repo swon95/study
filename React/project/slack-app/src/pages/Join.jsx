@@ -19,6 +19,8 @@ import {
 } from "firebase/auth";
 import md5 from "md5"
 import { getDatabase, ref, set } from "firebase/database"
+import { setUser } from '../store/userReducer';
+import { useDispatch } from 'react-redux';
 
 // password 유효성 검사
 const IsPasswordValid = (password, confirmPassword) => {
@@ -34,6 +36,7 @@ const IsPasswordValid = (password, confirmPassword) => {
 function Join() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -59,7 +62,7 @@ function Join() {
     const postUserData = async(name, email, password) => {
         setLoading(true) // 로딩 화면 출력
         try {
-            // firebase 에 계정이 생성되어 로그인 상태로 변경
+            // firebase 에 계정이 생성되어 로그인 상태로 변경(createUserWithEmailAndPassword)
             const {user} = await createUserWithEmailAndPassword(getAuth(), email, password)
             // 가입 한 유저의 프로필 정보 업데이트
             await updateProfile(user, {
@@ -71,6 +74,10 @@ function Join() {
                 name: user.displayName,
                 avatar: user.photoURL
             })
+
+            // 프로필 재 업데이트
+            dispatch(setUser(user))
+
             // Redux 를 사용하여 TODO Store 에 user 정보 저정
         } catch(e){
             setError(e.message) // firebase message property 에러 보여주기
