@@ -1,11 +1,11 @@
 // 여러 컴포넌트에서 사용할수 있는 유틸리티함수
-import { useWeb3Connect } from "@web3-react/core";
+import { useWeb3React } from "@web3-react/core";
 import { injected } from "./connectors";
 import { useState, useEffect, useCallback } from "react";
 
 export function useWeb3Connect() {
     const { activate, active } = useWeb3React(); // activate == 함수 , active == 변수
-    const [tride, setTride] = useState(false); // 시도의 유무를 파악하기 위한 state
+    const [ tride, setTride ] = useState(false); // 시도의 유무를 파악하기 위한 state
 
     // injected 를 이용하여 활성화가 되어있는지에 대한 유무를 확인하는 함수
     // 메모리를 효율적으로 사용하기 위해 useCallback 사용
