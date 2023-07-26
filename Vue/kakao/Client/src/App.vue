@@ -8,8 +8,8 @@
     <span>지번 주소</span>
     <input type="text" id="sample4_jibunAddress" readonly v-model="jibunAddress">
     <span id="guide" style="color:#999;display:none"></span>
-    <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-    <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+    <input type="text" id="sample4_detailAddress" v-model="detailAddress" placeholder="상세주소">
+    <input type="text" id="sample4_extraAddress" v-model="extraAddress" placeholder="참고항목">
     <button type="submit">전송</button>
   </form>
 </template>
@@ -29,6 +29,14 @@ export default {
   },
 
   methods: {
+    resetFormFields() {
+      this.postcode = "";
+      this.roadAddress = "";
+      this.jibunAddress = "";
+      this.detailAddress = "";
+      this.extraAddress = "";
+    },
+
       execDaumPostcode() {
           // daum.Postcode => window.daum.Postcode
           new window.daum.Postcode({
@@ -101,6 +109,8 @@ export default {
       localStorage.setItem('addressData', JSON.stringify(formData))
       // 전송할 데이터 확인
       console.log('전송할 데이터', formData)
+      // 데이터를 저장하고 나면 fieled 에 출력된 데이터 초기화
+      this.resetFormFields()
     },
   },
   
