@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'daumMap',
@@ -111,6 +112,16 @@ export default {
       console.log('전송할 데이터', formData)
       // 데이터를 저장하고 나면 fieled 에 출력된 데이터 초기화
       this.resetFormFields()
+      
+      axios.post('/', formData)
+        .then(response => {
+          console.log('서버 ok :', response.data)
+
+        })
+        .catch(error => {
+          console.log('서버 x :', error)
+
+        })
     },
   },
   
