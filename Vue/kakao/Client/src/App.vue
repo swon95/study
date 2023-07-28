@@ -11,14 +11,22 @@
     <input type="text" id="sample4_detailAddress" v-model="detailAddress" placeholder="상세주소">
     <input type="text" id="sample4_extraAddress" v-model="extraAddress" placeholder="참고항목">
     <button type="submit">전송</button>
+    
+    <div>
+      <HelloWorld />
+    </div>
   </form>
 </template>
 
 <script>
 import axios from 'axios';
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'daumMap',
+  components: {
+    HelloWorld
+  },
   data() {
     return {
       postcode: "",
@@ -105,7 +113,6 @@ export default {
           detailAddress: this.detailAddress,
           extraAddress: this.extraAddress,
       }
-      console.log('전송할 데이터', formData)
       // 로컬 스토리지에 데이터 저장
       localStorage.setItem('addressData', JSON.stringify(formData))
       // 전송할 데이터 확인
