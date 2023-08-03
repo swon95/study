@@ -149,36 +149,61 @@
 
 
 const express = require('express')
-const mysql = require('mysql')
+// const mysql = require('mysql')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const oauthRouter = require('./routes/auth')
 
 const app = express()
 const PORT = 8080;
 
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'a1231234!',
-  database: 'testbase'
-});
-
-db.connect();
-
-// Users 테이블을 조회하는 명령어 -> 모든 데이터 선택 / 콜백에는 3개의 매개변수를 받음
-db.query('SELECT * from Users', (error, rows, fields) => {
-  // 만약 에러가 발생한다면
-  if (error) throw error;
-  // 에러가 없으면 결과가 rows 에 담김 -> SELECT 문을 통해 조회된 데이터
-  console.log('User info is: ', rows);
-  // fields 에는 조회된 필드 정보가 담김 -> 필드 이름, 타입 등
-});
-
-db.end();
+// const db = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'a1231234!',
+//   database: 'testbase'
+// });
+// 
+// db.connect();
 
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended : true }))
+
+// app.post('/', (req, res) => {
+//   const data = req.body
+//   // 검증 과정 추가
+//   console.log(data)
+//   // const query = 'INSERT INTO Address SET ?'
+//   const query = 'INSERT INTO Address (postcode, roadAddress, jibunAddress, detailAddress, extraAddress) VALUES (?, ?, ?, ?, ?)'
+//   const valuse = [data. postcode, data.roadAddress, data.jibunAddress, data.detailAddress, data.extraAddress]
+// 
+//   db.query(query, valuse, (error, result) => {
+//     if (error) {
+//       console.log('An error occurred:', error);
+//       res.status(500).send('An error occurred');
+//     } else {
+//       console.log('Data inserted successfully:', result);
+//       res.status(200).send('Data inserted successfully');
+//     }
+//   })
+// })
+
+// Users 테이블을 조회하는 명령어 -> 모든 데이터 선택 / 콜백에는 3개의 매개변수를 받음
+// db.query('SELECT * from Address', (error, rows, fields) => {
+//   // 만약 에러가 발생한다면
+//   if (error) throw error;
+//   // 에러가 없으면 결과가 rows 에 담김 -> SELECT 문을 통해 조회된 데이터
+//   console.log('User info is: ', rows);
+//   // fields 에는 조회된 필드 정보가 담김 -> 필드 이름, 타입 등
+// });
+
+
+// process.on('exit', () => {
+//   db.end();
+// });
+
+app.use('/oauth', oauthRouter)
 
 app.listen(PORT, () => {
     console.log(`open server : ${PORT}`);

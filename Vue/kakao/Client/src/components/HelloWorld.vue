@@ -1,44 +1,53 @@
 <template>
-  <img src="./../assets/kakao_login_medium.png" @click="handleLogin()"/>
+<div>
+  <button @click="kakaoLogin">카카오 로그인</button>
+</div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { onMounted } from 'vue';
+import axios from "axios";
 import server from './../config/server.json'
 
-export default {
-  
-  methods: {
-    handleLogin() {
-      console.log('1');
-      const YOUR_KAKAO_APP_KEY = '089e634a765b283297d8271a3d4d1ac1'
-      const redirectURI = 'http://localhost:8080/oauth/kakao/callback';
-      window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${YOUR_KAKAO_APP_KEY}&redirect_uri=${redirectURI}&response_type=code`;
-    },
-  },
-  // 라이프사이클
-  created() {
-    // 인가 코드 받아오기
-    let KAKAO_CODE = new URL(window.location.href).searchParams.get('code');
-    console.log(KAKAO_CODE);
+let REST_API_KEY = '61161c1ae3b4bc42146d5c6314e28301';
 
-    // 인가코드가 존재한다면 해당 API 를 통해 get 요청
-    if(KAKAO_CODE){
-      axios
-        .get(server.url + '/oauth/kakao/server', {
-          // 인가코드를 전송
-          params: {
-            kakaoCode: KAKAO_CODE,
-          },
-        })
-        // 서버로 부터 받은 데이터 저장
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          console.error('Error obtaining access token:', error.message);
-        });
-    }
-  },
-};
+  const kakaoLogin = () => {
+    window.Kakao.Auth.login({
+    success: function(authObj) {
+      console.log('authObj', authObj);
+      window.Kakao.API.request({
+        url: '/v2/user/me',
+        success: (res) => {
+          const kakaoAccount = res.kakao_account;
+          console.log('kakaoAccount', kakaoAccount);
+
+          let KAKAO_CODE = new URL(window.location.href).searchParams.get("code");
+
+          // axios를 사용하여 서버에 POST 요청을 보내는 부분
+          axios.post(server.url + "/kakao/server", {
+            params: {
+                kakaoCode: KAKAO_CODE
+            }
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        },
+        fail: function(err) {
+          console.error(err);
+        },
+      });
+    },
+    fail: function(err) {
+      console.error(err);
+    },
+  });
+}
+    onMounted(() => {
+      window.Kakao.init(REST_API_KEY);
+  });
 </script>
