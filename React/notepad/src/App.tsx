@@ -44,7 +44,7 @@ function App() {
       {
         // mode 가 edit 일 때만 보이게
         mode === 'edit' &&
-          <Edit />
+          <Edit setMode={setMode}/>
       }
     </>
   )
